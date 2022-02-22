@@ -4,7 +4,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Weather from './Weather';
 import DayCard from './DayCard';
-
+require('dotenv').config();
 
 class App extends React.Component {
   constructor(props) {
@@ -52,7 +52,9 @@ class App extends React.Component {
   componentDidMount() {
     const key = process.env.REACT_APP_KEY;
     console.log(key)
-    const proxy = "https://cors-anywhere.herokuapp.com/";
+    console.log(process.env)
+
+    //const proxy = "https://cors-anywhere.herokuapp.com/";
 
     //console.log("APP KEY: ", key);
     //check coordinates of user
@@ -61,7 +63,8 @@ class App extends React.Component {
         let lon = position.coords.longitude;
         let lat = position.coords.latitude;
         //fetch data from api
-        const api = `${proxy}http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${key}`;
+        //${proxy}
+        const api = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${key}`;
 
 
         fetch(api)
